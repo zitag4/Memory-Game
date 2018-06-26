@@ -1,7 +1,16 @@
 /*
  * Create a list that holds all of your cards
- */
 
+const cardList = document.getElementsByClassName('card');
+const cardArray = [];
+
+
+console.log('hulye vagyok');
+for(let i=0; i<=15; i++) {
+  cardArray[i]=cardList.item(i);
+  console.log(cardArray[i]);
+}
+*/
 
 /*
  * Display the cards on the page
@@ -24,7 +33,17 @@ function shuffle(array) {
 
     return array;
 }
+//const shuffledCardList=shuffle(cardList);
+//console.log(shuffledCardList);
 
+document.addEventListener('click', function () {
+  const listElement = document.getElementsByClassName('card');
+  for(let i=0; i<listElement.length; i++) {
+    listElement[i].classList.add('open');
+    console.log(listElement[i]);
+  }
+
+});
 
 /*
  * set up the event listener for a card. If a card is clicked:
