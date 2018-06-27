@@ -11,6 +11,7 @@ const cardList = [
   "fa fa-bomb", "fa fa-bomb"
 ];
 
+
 /*
 
 for(let i=0; i<=15; i++) {
@@ -44,12 +45,15 @@ function shuffle(array) {
 //console.log(shuffledCardList);
 
 // Add open class when clicked
-document.addEventListener('click', function () {
+/*document.addEventListener('click', function () {
   const listElement = document.getElementsByClassName('card');
   for(let i=0; i<listElement.length; i++) {
     listElement[i].classList.add('open');
     console.log(listElement[i]);
   }
+});*/
+document.addEventListener('click', function (event) {
+  event.target.classList.add('open', 'show');
 });
 /*
  * set up the event listener for a card. If a card is clicked:
