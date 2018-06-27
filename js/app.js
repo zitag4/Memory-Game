@@ -1,6 +1,6 @@
-
+const deck = document.querySelector(".deck");
  // Create a list that holds all of your cards
-const cardList = [
+/*const cardList = [
   "fa fa-diamond", "fa fa-diamond",
   "fa fa-paper-plane-o", "fa fa-paper-plane-o",
   "fa fa-anchor", "fa fa-anchor",
@@ -9,16 +9,18 @@ const cardList = [
   "fa fa-leaf", "fa fa-leaf",
   "fa fa-bicycle" ,"fa fa-bicycle",
   "fa fa-bomb", "fa fa-bomb"
-];
+];*/
 
 
-/*
-
-for(let i=0; i<=15; i++) {
-  cardArray[i]=cardList.item(i);
-  console.log(cardArray[i]);
-}
-*/
+//Start the Game
+let cardList= document.getElementsByClassName('card');
+let cardArray=[];
+//
+  for(let i=0; i<=15; i++) {
+    cardArray[i]=cardList.item(i);
+    console.log(cardArray[i]);
+  }
+//}
 
 /*
  * Display the cards on the page
@@ -41,9 +43,23 @@ function shuffle(array) {
 
     return array;
 }
-//const shuffledCardList=shuffle(cardList);
-//console.log(shuffledCardList);
 
+
+
+
+
+
+function startGame() {
+ let shuffledCardList=shuffle(cardArray);
+ console.log(shuffledCardList);
+
+ for(let i=0; i<=15; i++) {
+   deck.appendChild(shuffledCardList[i]);
+   console.log(deck);
+ }
+
+}
+startGame();
 // Add open class when clicked
 /*document.addEventListener('click', function () {
   const listElement = document.getElementsByClassName('card');
