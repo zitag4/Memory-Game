@@ -1,11 +1,18 @@
+
+ // Create a list that holds all of your cards
+const cardList = [
+  "fa fa-diamond", "fa fa-diamond",
+  "fa fa-paper-plane-o", "fa fa-paper-plane-o",
+  "fa fa-anchor", "fa fa-anchor",
+  "fa fa-bolt", "fa fa-bolt",
+  "fa fa-cube", "fa fa-cube",
+  "fa fa-leaf", "fa fa-leaf",
+  "fa fa-bicycle" ,"fa fa-bicycle",
+  "fa fa-bomb", "fa fa-bomb"
+];
+
 /*
- * Create a list that holds all of your cards
 
-const cardList = document.getElementsByClassName('card');
-const cardArray = [];
-
-
-console.log('hulye vagyok');
 for(let i=0; i<=15; i++) {
   cardArray[i]=cardList.item(i);
   console.log(cardArray[i]);
@@ -36,15 +43,14 @@ function shuffle(array) {
 //const shuffledCardList=shuffle(cardList);
 //console.log(shuffledCardList);
 
+// Add open class when clicked
 document.addEventListener('click', function () {
   const listElement = document.getElementsByClassName('card');
   for(let i=0; i<listElement.length; i++) {
     listElement[i].classList.add('open');
     console.log(listElement[i]);
   }
-
 });
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
