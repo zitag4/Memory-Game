@@ -1,4 +1,5 @@
-const deck = document.querySelector(".deck");
+let clickCounter = 0;
+let openCardsList = [];
  // Create a list that holds all of your cards
 /*const cardList = [
   "fa fa-diamond", "fa fa-diamond",
@@ -15,12 +16,11 @@ const deck = document.querySelector(".deck");
 //Start the Game
 let cardList= document.getElementsByClassName('card');
 let cardArray=[];
-//
+
   for(let i=0; i<=15; i++) {
     cardArray[i]=cardList.item(i);
-    console.log(cardArray[i]);
   }
-//}
+
 
 /*
  * Display the cards on the page
@@ -44,22 +44,61 @@ function shuffle(array) {
     return array;
 }
 
+function startGame () {
+  let shuffledCardList=shuffle(cardArray);
 
+  for(let i=0; i<=15; i++) {
+    deck.appendChild(shuffledCardList[i]);
+  }
+}
 
-
-
-
-function startGame() {
- let shuffledCardList=shuffle(cardArray);
- console.log(shuffledCardList);
-
- for(let i=0; i<=15; i++) {
-   deck.appendChild(shuffledCardList[i]);
-   console.log(deck);
- }
+function showCard (card) {
+  card.classList.add('open', 'show');
+  clickCounter += 1;
+  console.log(clickCounter);
 
 }
+
+function matchCard () {
+  openCardsList[0].classList.add('match');
+  openCardsList[1].classList.add('match');
+  openCardsList = [];
+
+}
+
+function differentCard () {
+  setTimeout(function() {
+  openCardsList[0].classList.remove('open', 'show');
+  openCardsList[1].classList.remove('open', 'show');
+  openCardsList = [];
+}, 800)
+}
+
+document.querySelector(".deck").addEventListener('click', function (event) {
+  let card = event.target;
+  //Add clicked cards to a list
+  if (!card.classList.contains('match')) {
+    if (openCardsList.length < 2){
+      showCard(card);
+      openCardsList.push(card);
+    }
+    //Check cards
+    if(openCardsList.length > 1){
+      if(openCardsList[0].innerHTML === openCardsList[1].innerHTML){
+        matchCard();
+      }
+      else {
+        differentCard();
+      }
+    }
+  }
+});
+
 startGame();
+
+
+
+
 // Add open class when clicked
 /*document.addEventListener('click', function () {
   const listElement = document.getElementsByClassName('card');
@@ -68,9 +107,10 @@ startGame();
     console.log(listElement[i]);
   }
 });*/
-document.addEventListener('click', function (event) {
-  event.target.classList.add('open', 'show');
-});
+
+
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
