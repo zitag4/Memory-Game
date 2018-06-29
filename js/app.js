@@ -1,5 +1,6 @@
 let clickCounter = 0;
 let openCardsList = [];
+let moves = 0;
  // Create a list that holds all of your cards
 /*const cardList = [
   "fa fa-diamond", "fa fa-diamond",
@@ -12,7 +13,7 @@ let openCardsList = [];
   "fa fa-bomb", "fa fa-bomb"
 ];*/
 
-
+let deck = document.querySelector(".deck");
 //Start the Game
 let cardList= document.getElementsByClassName('card');
 let cardArray=[];
@@ -55,8 +56,6 @@ function startGame () {
 function showCard (card) {
   card.classList.add('open', 'show');
   clickCounter += 1;
-  console.log(clickCounter);
-
 }
 
 function matchCard () {
@@ -74,7 +73,7 @@ function differentCard () {
 }, 800)
 }
 
-document.querySelector(".deck").addEventListener('click', function (event) {
+deck.addEventListener('click', function (event) {
   let card = event.target;
   //Add clicked cards to a list
   if (!card.classList.contains('match')) {
@@ -90,6 +89,9 @@ document.querySelector(".deck").addEventListener('click', function (event) {
       else {
         differentCard();
       }
+      moves++;
+      document.querySelector('.moves').innerText=moves;
+      console.log(moves);
     }
   }
 });
