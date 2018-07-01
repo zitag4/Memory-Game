@@ -1,8 +1,11 @@
 let clickCounter = 0;
 let openCardsList = [];
 let moves = 0;
-let star =3;
+let star = 3;
 let time;
+let t = 0;
+let min = 0;
+let s = 0;
 
  // Create a list that holds all of your cards
 /*const cardList = [
@@ -16,7 +19,7 @@ let time;
   "fa fa-bomb", "fa fa-bomb"
 ];*/
 
-let deck = document.querySelector(".deck");
+let deck = document.querySelector('.deck');
 //Start the Game
 let cardList= document.getElementsByClassName('card');
 let cardArray=[];
@@ -53,6 +56,7 @@ function startGame () {
 
   for(let i=0; i<=15; i++) {
     deck.appendChild(shuffledCardList[i]);
+    shuffledCardList[i].classList.remove('open', 'show', 'match');
   }
 }
 
@@ -83,10 +87,10 @@ function winGame (card) {
   }
 }
 
-let min = 0;
-let s = 0;
+
 
 function timer() {
+
   time = setInterval( function () {
     s++;
     if (s == 60) {
@@ -98,11 +102,24 @@ function timer() {
   }, 1000)
 }
 
-function initGame () {
+//Reload the game
+document.querySelector('.restart').addEventListener('click', function initGame() {
+  startGame();
+  clearInterval(time);
+  moves = 0;
+  document.querySelector('.moves').innerHTML = 0;
+  t = 0;
+  min = 0;
+  s = 0;
+  document.querySelector('.timer').innerHTML = 'Time: 00:00';
+  document.querySelector('.stars').innerHTML = '<li><i class="fa fa-star"></i></li> <li><i class="fa fa-star"></i></li> <li><i class="fa fa-star"></i></li>';
+  console.log('reloaded');
+});
 
-}
 
-let t=0;
+
+
+
 
 deck.addEventListener('click', function (event) {
   //Start timer
