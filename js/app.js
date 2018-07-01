@@ -2,6 +2,8 @@ let clickCounter = 0;
 let openCardsList = [];
 let moves = 0;
 let star =3;
+let time;
+
  // Create a list that holds all of your cards
 /*const cardList = [
   "fa fa-diamond", "fa fa-diamond",
@@ -81,8 +83,33 @@ function winGame (card) {
   }
 }
 
+let min = 0;
+let s = 0;
+
+function timer() {
+  time = setInterval( function () {
+    s++;
+    if (s == 60) {
+      min++;
+      s = 0;
+    }
+    document.querySelector('.timer').textContent = 'Time: ' + min +':' + s;
+
+  }, 1000)
+}
+
+function initGame () {
+
+}
+
+let t=0;
+
 deck.addEventListener('click', function (event) {
-  console.log(document.querySelector('.stars'));
+  //Start timer
+  t++;
+  if(t == 1){
+  timer();
+}
   let card = event.target;
   //Add clicked cards to a list
   if (!card.classList.contains('match')) {
@@ -106,8 +133,6 @@ deck.addEventListener('click', function (event) {
       if (moves/5 === 2 || moves/5 === 3 || moves/5 === 4) {
         document.querySelector('.fa-star').remove();
         star = 4-moves/5;
-        console.log('stars= ' + star);
-        console.log(document.querySelector('.stars'));
       }
     }
   }
