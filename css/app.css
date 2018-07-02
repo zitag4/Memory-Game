@@ -26,6 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 
 h1 {
@@ -99,6 +100,7 @@ h1 {
 }
 
 .score-panel .stars li {
+    color: yellow;
     list-style: none;
     display: inline-block;
 }
@@ -112,4 +114,50 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.cong {
+
+  font-size: 55px;
+  font-weight: 200;
+  color: green;
+}
+
+h2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.score {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.fa-star {
+  color: yellow;
+}
+
+.win {
+  z-index: -1;
+  position: absolute;
+  width: 430px;
+  height: 520px;
+  background-color: white;
+  padding: 35px;
+  border-radius: 50px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.again {
+  text-decoration: underline;
+  font-weight: bold;
+  text-align: center;
+  font-size: 35px;
 }

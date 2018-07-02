@@ -3,9 +3,9 @@ let openCardsList = [];
 let moves = 0;
 let star = 3;
 let time;
-let t = 0;
 let min = 0;
 let s = 0;
+let startedGame = false;
 
  // Create a list that holds all of your cards
 /*const cardList = [
@@ -51,14 +51,7 @@ function shuffle(array) {
     return array;
 }
 
-function startGame () {
-  let shuffledCardList=shuffle(cardArray);
 
-  for(let i=0; i<=15; i++) {
-    deck.appendChild(shuffledCardList[i]);
-    shuffledCardList[i].classList.remove('open', 'show', 'match');
-  }
-}
 
 function showCard (card) {
   card.classList.add('open', 'show');
@@ -82,8 +75,10 @@ function differentCard () {
 
 // Win if all card are open
 function winGame (card) {
-  if (document.getElementsByClassName('match').length == 16){
-    console.log("You won!");
+  if (document.getElementsByClassName('match').length == 2){
+    document.querySelector('.win').style.cssText = 'z-index: 1;';
+    document.querySelector('.score').innerHTML = 'whitin ' + min +':' + s + ' and with ' + star + ' <i class="fa fa-star"></i>';
+    clearInterval(time);
   }
 }
 
@@ -102,9 +97,20 @@ function timer() {
   }, 1000)
 }
 
-//Reload the game
-document.querySelector('.restart').addEventListener('click', function initGame() {
-  startGame();
+function startGame () {
+
+}
+
+function initGame() {
+  startedGame = false;
+  document.querySelector('.win').style.cssText = 'z-index: -1;'
+  let shuffledCardList=shuffle(cardArray);
+
+  for(let i=0; i<=15; i++) {
+    deck.appendChild(shuffledCardList[i]);
+    shuffledCardList[i].classList.remove('open', 'show', 'match');
+  }
+
   clearInterval(time);
   moves = 0;
   document.querySelector('.moves').innerHTML = 0;
@@ -113,19 +119,19 @@ document.querySelector('.restart').addEventListener('click', function initGame()
   s = 0;
   document.querySelector('.timer').innerHTML = 'Time: 00:00';
   document.querySelector('.stars').innerHTML = '<li><i class="fa fa-star"></i></li> <li><i class="fa fa-star"></i></li> <li><i class="fa fa-star"></i></li>';
-  console.log('reloaded');
-});
+}
 
+//Reload the game
+document.querySelector('.restart').addEventListener('click', initGame);
 
-
-
-
+document.querySelector('.again').addEventListener('click', initGame);
 
 deck.addEventListener('click', function (event) {
+
   //Start timer
-  t++;
-  if(t == 1){
+  if(!startedGame){
   timer();
+  startedGame = true;
 }
   let card = event.target;
   //Add clicked cards to a list
@@ -143,7 +149,7 @@ deck.addEventListener('click', function (event) {
         differentCard();
       }
       moves++;
-      document.querySelector('.moves').innerText=moves;
+      document.querySelector('.moves').innerText = moves;
       console.log(moves);
 
       //Rating
