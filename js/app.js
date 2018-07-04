@@ -40,7 +40,7 @@ function shuffle(array) {
 }
 
 function showCard (card) {
-  card.classList.add('open', 'show');
+  card.classList.add('open', 'show', 'disable');
   clickCounter += 1;
 }
 
@@ -52,8 +52,8 @@ function matchCard () {
 
 function differentCard () {
   setTimeout(function() {
-    openCardsList[0].classList.remove('open', 'show');
-    openCardsList[1].classList.remove('open', 'show');
+    openCardsList[0].classList.remove('open', 'show', 'disable');
+    openCardsList[1].classList.remove('open', 'show', 'disable');
     openCardsList = [];
   }, 800)
 }
@@ -80,6 +80,7 @@ function timer() {
 
 // Initialize the game
 function initGame() {
+  openCardsList = [];
   startedGame = false;
   document.querySelector('.win').style.cssText = 'z-index: -1;';
 
@@ -87,7 +88,7 @@ function initGame() {
   let shuffledCardList=shuffle(cardArray);
   for(let i=0; i<=15; i++) {
     deck.appendChild(shuffledCardList[i]);
-    shuffledCardList[i].classList.remove('open', 'show', 'match');
+    shuffledCardList[i].classList.remove('open', 'show', 'match', 'disable');
   }
 
   moves = 0;

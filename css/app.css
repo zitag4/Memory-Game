@@ -76,6 +76,10 @@ h1 {
     font-size: 33px;
 }
 
+.deck .card.disable {
+    pointer-events: none;
+}
+
 .deck .card.match {
     cursor: default;
     background: #02ccba;
@@ -115,6 +119,8 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+
 
 .cong {
   font-size: 55px;
